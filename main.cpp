@@ -36,7 +36,7 @@ int main()
 	}
 
 	// Подсчет мин вокруг каждой клетки
-	for (int i = 1; i <= 10; i++)
+	for (int i = 1; i <= 10; i++) {
 		for (int j = 1; j <= 10; j++)
 		{
 			int n = 0;
@@ -51,6 +51,8 @@ int main()
 			if (gridLogic[i + 1][j - 1] == 9) n++;
 			gridLogic[i][j] = n;
 		}
+	}
+
 
 	while (app.isOpen())
 	{
@@ -71,8 +73,152 @@ int main()
 					if (flagGrid[x][y] == 0) {
 						gridView[x][y] = gridLogic[x][y];
 						flagGrid[x][y] = 1;
+						if (gridLogic[x][y] == 0) {
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (x + count >= 12) break;
+								else {
+									if (gridLogic[x + count][y] == 0) {
+										gridView[x + count][y] = gridLogic[x+count][y];
+										flagGrid[x + count][y] = 1;
+									}
+									else if (gridLogic[x + count][y] < 9 && gridLogic[x + count][y] > 0) {
+										gridView[x + count][y] = gridLogic[x + count][y];
+										flagGrid[x + count][y] = 1;
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (x - count <= 0) break;
+								else{
+									if (gridLogic[x - count][y] == 0) {
+										gridView[x - count][y] = gridLogic[x - count][y];
+										flagGrid[x - count][y] = 1;
+									}
+									else if (gridLogic[x - count][y] < 9 && gridLogic[x - count][y] > 0) {
+										gridView[x - count][y] = gridLogic[x - count][y];
+										flagGrid[x - count][y] = 1;
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (y + count >= 12) break;
+								else {
+									if (gridLogic[x][y + count] == 0) {
+										gridView[x][y + count] = gridLogic[x][y + count];
+										flagGrid[x][y + count] = 1;
+									}
+									else if (gridLogic[x][y + count] < 9 && gridLogic[x][y + count] > 0) {
+										gridView[x][y + count] = gridLogic[x][y + count];
+										flagGrid[x][y + count] = 1;
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (y - count <= 0) break;
+								else {
+									if (gridLogic[x][y - count] == 0) {
+										gridView[x][y - count] = gridLogic[x][y - count];
+										flagGrid[x][y - count] = 1;
+									}
+									else if (gridLogic[x][y - count] < 9 && gridLogic[x][y - count] > 0) {
+										gridView[x][y - count] = gridLogic[x][y - count];
+										flagGrid[x][y - count] = 1;
+										break;
+									}
+								}
+							}
+
+/*
+							for (int count = 1; count <= 12; count++) {
+								if (y + count >= 12 || x + count >= 12) break;
+								else {
+									if (gridLogic[x+count][y + count] == 0) {
+										gridView[x + count][y + count] = gridLogic[x + count][y + count];
+										flagGrid[x + count][y + count] = 1;
+									}
+									else if (gridLogic[x + count][y + count] < 9 && gridLogic[x + count][y + count] > 0) {
+										gridView[x + count][y + count] = gridLogic[x + count][y + count];
+										flagGrid[x + count][y + count] = 1;
+										break;
+									}
+									else if (gridLogic[x + count][y + count] == 9) {
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (y + count >= 12 || x - count <= 0) break;
+								else {
+									if (gridLogic[x - count][y + count] == 0) {
+										gridView[x - count][y + count] = gridLogic[x - count][y + count];
+										flagGrid[x - count][y + count] = 1;
+									}
+									else if (gridLogic[x - count][y + count] < 9 && gridLogic[x - count][y + count] > 0) {
+										gridView[x - count][y + count] = gridLogic[x - count][y + count];
+										flagGrid[x - count][y + count] = 1;
+										break;
+									}
+									else if (gridLogic[x - count][y + count] == 9) {
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (y - count <= 0 || x - count <= 0) break;
+								else {
+									if (gridLogic[x - count][y - count] == 0) {
+										gridView[x - count][y - count] = gridLogic[x - count][y - count];
+										flagGrid[x - count][y - count] = 1;
+									}
+									else if (gridLogic[x - count][y - count] < 9 && gridLogic[x - count][y - count] > 0) {
+										gridView[x - count][y - count] = gridLogic[x - count][y - count];
+										flagGrid[x - count][y - count] = 1;
+										break;
+									}
+									else if (gridLogic[x - count][y - count] == 9) {
+										break;
+									}
+								}
+							}
+
+
+							for (int count = 1; count <= 12; count++) {
+								if (y - count <= 0 || x + count >= 12) break;
+								else {
+									if (gridLogic[x + count][y - count] == 0) {
+										gridView[x + count][y - count] = gridLogic[x + count][y - count];
+										flagGrid[x + count][y - count] = 1;
+									}
+									else if (gridLogic[x + count][y - count] < 9 && gridLogic[x + count][y - count] > 0) {
+										gridView[x + count][y - count] = gridLogic[x + count][y - count];
+										flagGrid[x + count][y - count] = 1;
+										break;
+									}
+									else if (gridLogic[x + count][y - count] == 9) {
+										break;
+									}
+								}
+							}
+*/
+
+						}
 					}
-					else if (flagGrid[x][y] == 0) {
+					else if (flagGrid[x][y] == 2 || flagGrid[x][y] == 1) {
 						continue;
 					}
 				}
